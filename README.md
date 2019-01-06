@@ -15,4 +15,11 @@ To launch memoji game in browser:
 
 ## Python
 
-to be done
+Install python3. To run webserver from command line:
+```
+> python3 ./python/main.js
+```
+To launch memoji game in browser:
+```
+> http://localhost:8080
+```
