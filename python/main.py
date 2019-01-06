@@ -1,8 +1,9 @@
 #!/usr/bin/python3
-from os import curdir, sep
+import os
 from http.server import HTTPServer, BaseHTTPRequestHandler
 
 PORT_NUMBER = 8080
+CUR_DIR = os.path.dirname(os.path.abspath(__file__))
 
 class onRequest(BaseHTTPRequestHandler):
 	def do_GET(self):
@@ -31,10 +32,10 @@ class onRequest(BaseHTTPRequestHandler):
 				self.send_header('Content-type', mimetype)
 				self.end_headers()
 				if ('image' in mimetype):
-					f = open(curdir + self.path, 'rb')
+					f = open(CUR_DIR + self.path, 'rb')
 					content = f.read()
 				else:
-					f = open(curdir + self.path)
+					f = open(CUR_DIR + self.path)
 					content = f.read().encode('utf-8')
 				self.wfile.write(content)
 				f.close()
