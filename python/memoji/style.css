@@ -1,0 +1,189 @@
+:root {
+	--gradient-left-color: #22AB93;
+	--gradient-right-color: #19668D;
+	--background-color: #CFD0CF;
+	--text-color: #434344;
+	--succes-background-color: #5AD66F;
+	--failure-background-color: #F44336;
+}
+
+
+body {
+	margin: 0;
+	background: var(--background-color);
+	font-family: Arial, sans-serif;
+	color: var(--text-color);
+}
+
+.game {
+	width: 600px;
+	margin: 0 auto;
+}
+
+.header {
+	text-align: center;
+	font: bold 42px/47px Arial;
+	margin: 40px auto;
+}
+
+.cards {
+	list-style-type: none;
+	padding: 0;
+	display: grid;
+	grid-template-columns: repeat(4, 150px);
+	-webkit-perspective: 600px;
+			perspective: 600px;
+}
+
+.card {
+	height: 130px;
+	width: 130px;
+	margin: 0 25px 25px 0;
+	border-radius: 9px;
+	-webkit-box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+			box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+	position: relative;
+	cursor: pointer;
+	/*background-color: white; ERROR ON MACOS IN CHROME*/
+
+	-webkit-transition: -webkit-transform .5s;
+			transition: -webkit-transform .5s;
+	-o-transition: transform .5s;
+	transition: transform .5s;
+	transition: transform .5s, -webkit-transform .5s;
+	-webkit-transform-style: preserve-3d;
+			transform-style: preserve-3d;
+}
+
+.card__face {
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	-webkit-backface-visibility: hidden;
+			backface-visibility: hidden;
+}
+
+.card__face--front {	
+	border-radius: 9px;
+	border: 5px solid white;
+	-webkit-box-sizing: border-box;
+			box-sizing: border-box;		
+	background: -webkit-linear-gradient(45deg, 
+								var(--gradient-left-color),
+								var(--gradient-right-color));
+	background: -o-linear-gradient(45deg, 
+								var(--gradient-left-color),
+								var(--gradient-right-color));	
+	background: linear-gradient(45deg, 
+								var(--gradient-left-color),
+								var(--gradient-right-color));		
+}
+
+.card__face--back {
+	border-radius: 9px;
+	background: #fff;
+	-webkit-transform: rotateY(180deg);
+			transform: rotateY(180deg);	
+}
+
+.memoji {
+	width: 75px; 
+	height: 75px;
+	position: absolute;
+	margin: auto auto;
+	top: 0; left: 0; right: 0; bottom: 0;
+}
+
+.emoji1 .memoji { background: url('./css_sprites.png') -10px -10px;   }
+.emoji2 .memoji { background: url('./css_sprites.png') -105px -10px;  }
+.emoji3 .memoji { background: url('./css_sprites.png') -10px -105px;  }
+.emoji4 .memoji { background: url('./css_sprites.png') -105px -105px; }
+.emoji5 .memoji { background: url('./css_sprites.png') -200px -10px;  }
+.emoji6 .memoji { background: url('./css_sprites.png') -200px -105px; }
+
+.card.opened {
+	-webkit-transform: rotateY(180deg);
+			transform: rotateY(180deg);
+}
+
+.card.success .card__face--back {
+	background: var(--succes-background-color);
+}
+
+.card.failure .card__face--back {
+	background: var(--failure-background-color);
+}
+
+.timer {
+	line-height: 36px;
+	font: bold 32px Arial;
+	margin-top: 5px;
+	text-align: center;
+}
+
+.message {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 1;
+	width: 100%;
+	height: 100%;
+
+	background: rgba(0, 0, 0, 0.5);
+}
+
+.message__box {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	height: auto;
+	min-width: 350px;
+	padding: 30px 0;
+	box-sizing: border-box;
+	background-color: white;
+	display: flex;
+	flex-direction: column;
+	align-items: center;	
+}
+
+.message__status {
+	margin-bottom: 40px;
+	box-sizing: border-box;
+	font: bold 48px Arial;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+}
+
+.message__btn {
+	height: 40px;
+	padding: 0 30px;
+	font: bold 20px Arial;
+	color: white;
+	background: linear-gradient(90deg, 
+								var(--gradient-right-color),
+								var(--gradient-left-color));
+	box-shadow: 1px 1px 1px #000;
+	border-radius: 9px;
+	border: none;
+}
+
+.message__btn:focus { 
+	outline: none; 
+}
+
+.message__btn:active {
+	box-shadow: inset 2px 1px 8px #000;
+}
+
+@keyframes change-letter-size {
+	0%, 50%, 100% {
+		transform: translateY(10px) scaleY(1.0);
+	}
+	25% {
+		transform: translateY(-10px) scaleY(1.3);
+	}
+}
+
